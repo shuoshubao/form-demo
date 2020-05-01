@@ -5,7 +5,7 @@
     "description": "表单校验-最佳实践",
     "scripts": {
         "start": "vue-cli-service serve",
-        "build": "vue-cli-service build",
+        "build": "vue-cli-service build && cp dist/index.html index.html",
         "build-analyzer": "npm run build -- --report",
         "commit": "npx git-cz",
         "prettier": "npx prettier --write **/src/**/*.{ts,vue,css,less,scss,md,json}",
