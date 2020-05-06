@@ -1,19 +1,19 @@
 <template>
     <mtd-container class="container">
-        <mtd-header class="container-header">
-            <span class="container-header-logo">
-                <img src="https://s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="" />
-            </span>
-            <span>form最佳实践</span>
-        </mtd-header>
+        <mtd-aside width="200px" class="container-aside">
+            <mtd-menu v-model="activeName" @select="handleSelectMenu">
+                <mtd-menu-item v-for="(item, index) in menuData" :key="index" :name="item.value">{{
+                    item.label
+                }}</mtd-menu-item>
+            </mtd-menu>
+        </mtd-aside>
         <mtd-container>
-            <mtd-aside width="200px" class="container-aside">
-                <mtd-menu v-model="activeName" @select="handleSelectMenu">
-                    <mtd-menu-item v-for="(item, index) in menuData" :key="index" :name="item.value">{{
-                        item.label
-                    }}</mtd-menu-item>
-                </mtd-menu>
-            </mtd-aside>
+            <mtd-header class="container-header">
+                <span class="container-header-logo">
+                    <img src="https://s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="" />
+                </span>
+                <span>form最佳实践</span>
+            </mtd-header>
             <mtd-main class="container-main">
                 <div class="container-view">
                     <router-view />
@@ -74,6 +74,11 @@ export default class App extends Vue {
 <style lang="scss" scoped>
 .container {
     height: 100%;
+    .container-aside {
+        box-shadow: 0 1px 3px 0 rgba(8, 28, 66, 0.1);
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+        z-index: 1;
+    }
     .container-header {
         background-color: #fff;
         color: #000;
@@ -82,6 +87,7 @@ export default class App extends Vue {
         display: flex;
         justify-content: center;
         align-items: center;
+        box-shadow: 0 2px 8px 0 rgba(93, 98, 106, 0.1);
         .container-header-logo {
             display: inline-block;
             width: 47px;
@@ -93,9 +99,6 @@ export default class App extends Vue {
                 height: 46px;
             }
         }
-    }
-    .container-aside {
-        box-shadow: 0 1px 3px 0 rgba(8, 28, 66, 0.1);
     }
     .container-main {
         background-color: #f7f8fc;

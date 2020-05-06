@@ -25,7 +25,7 @@
                 </mtd-table-column>
                 <mtd-table-column label="操作" width="100">
                     <template slot-scope="scope">
-                        <mtd-button type="text-primary" @click="handleDelete(scope.$index, arguments[0])"
+                        <mtd-button type="text-primary" size="small" @click="handleDelete(scope.$index, arguments[0])"
                             >删除</mtd-button
                         >
                     </template>
