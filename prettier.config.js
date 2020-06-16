@@ -1,5 +1,6 @@
 const PrettierConfig = require('@datafe/config/prettier');
 
 module.exports = {
-    ...PrettierConfig
+    ...PrettierConfig,
+    tabWidth: 4
 };

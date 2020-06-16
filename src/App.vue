@@ -2,9 +2,9 @@
     <mtd-container class="container">
         <mtd-aside width="200px" class="container-aside">
             <mtd-menu v-model="activeName" @select="handleSelectMenu">
-                <mtd-menu-item v-for="(item, index) in menuData" :key="index" :name="item.value">{{
-                    item.label
-                }}</mtd-menu-item>
+                <mtd-menu-item v-for="(item, index) in menuData" :key="index" :name="item.value">
+                    {{ item.label }}
+                </mtd-menu-item>
             </mtd-menu>
         </mtd-aside>
         <mtd-container>

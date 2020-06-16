@@ -29,7 +29,7 @@
         "vuex-class": "^0.3.1"
     },
     "devDependencies": {
-        "@datafe/config": "0.2.10",
+        "@datafe/config": "0.3.5",
         "@datafe/flow": "0.1.7",
         "@vue/cli-plugin-babel": "3.11.0",
         "@vue/cli-plugin-typescript": "3.2.2",
