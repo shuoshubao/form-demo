@@ -20,7 +20,7 @@
         "@types/lodash": "4.14.149",
         "axios": "^0.18.0",
         "dayjs": "1.8.16",
-        "lodash": "4.17.15",
+        "lodash": "4.17.19",
         "vue": "2.6.10",
         "vue-property-decorator": "8.4.2",
         "vue-router": "^3.0.1",
