@@ -1,53 +1,53 @@
 <template>
     <div>
-        <mtd-form ref="form" :model="formModel" :label-width="0">
-            <mtd-table :data="tableData" bordered>
-                <mtd-table-column prop="date" label="日期" width="160">
+        <el-form ref="form" :model="formModel" label-width="0">
+            <el-table :data="tableData" bordered>
+                <el-table-column prop="date" label="日期" width="160">
                     <template slot-scope="scope">
-                        <mtd-form-item :prop="`tableData.${scope.$index}.date`" :rules="formRules.date">
-                            <mtd-date-picker type="date" v-model="scope.row.date" style="width: 140px;" />
-                        </mtd-form-item>
+                        <el-form-item :prop="`tableData.${scope.$index}.date`" :rules="formRules.date">
+                            <el-date-picker type="date" v-model="scope.row.date" style="width: 140px;" />
+                        </el-form-item>
                     </template>
-                </mtd-table-column>
-                <mtd-table-column prop="name" label="姓名" width="180">
+                </el-table-column>
+                <el-table-column prop="name" label="姓名" width="180">
                     <template slot-scope="scope">
-                        <mtd-form-item :prop="`tableData.${scope.$index}.name`" :rules="formRules.name">
-                            <mtd-input v-model="scope.row.name" style="width: 130px;" />
-                        </mtd-form-item>
+                        <el-form-item :prop="`tableData.${scope.$index}.name`" :rules="formRules.name">
+                            <el-input v-model="scope.row.name" style="width: 130px;" />
+                        </el-form-item>
                     </template>
-                </mtd-table-column>
-                <mtd-table-column prop="address" label="地址">
+                </el-table-column>
+                <el-table-column prop="address" label="地址">
                     <template slot-scope="scope">
-                        <mtd-form-item :prop="`tableData.${scope.$index}.address`" :rules="formRules.address">
-                            <mtd-input v-model="scope.row.address" style="width: 300px;" />
-                        </mtd-form-item>
+                        <el-form-item :prop="`tableData.${scope.$index}.address`" :rules="formRules.address">
+                            <el-input v-model="scope.row.address" style="width: 300px;" />
+                        </el-form-item>
                     </template>
-                </mtd-table-column>
-                <mtd-table-column label="操作" width="100">
+                </el-table-column>
+                <el-table-column label="操作" width="100">
                     <template slot-scope="scope">
-                        <mtd-button type="text-primary" size="small" @click="handleDelete(scope.$index, arguments[0])">
+                        <el-button type="text-primary" size="small" @click="handleDelete(scope.$index, arguments[0])">
                             删除
-                        </mtd-button>
+                        </el-button>
                     </template>
-                </mtd-table-column>
-            </mtd-table>
-        </mtd-form>
+                </el-table-column>
+            </el-table>
+        </el-form>
         <div style="margin-top: 10px;">
-            <mtd-button type="primary" @click="handleAdd">增加一行</mtd-button>
+            <el-button type="primary" @click="handleAdd">增加一行</el-button>
         </div>
         <div style="margin-top: 10px;">
-            <mtd-button type="primary" @click="handleSubmit">保存</mtd-button>
+            <el-button type="primary" @click="handleSubmit">保存</el-button>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Ref } from 'vue-property-decorator';
-import { rules, pifyValidate } from '@datafe/tools';
+import { rules, pifyValidate } from '@nbfe/tools';
 
 const { required } = rules;
 
-@Component
+@Component({})
 export default class App extends Vue {
     @Ref('form') readonly form!: any;
 
@@ -79,6 +79,11 @@ export default class App extends Vue {
         };
     }
 
+    created() {
+        console.log('🍉22', 'window.location.href');
+        console.log(window.location.href);
+    }
+
     // 删除一行
     async handleDelete(index) {
         this.tableData.splice(index, 1);
@@ -104,9 +109,9 @@ export default class App extends Vue {
     // 提交
     async handleSubmit() {
         const validate = await this.handleValidate();
-        this.$mtd.message({ type: 'info', message: `校验结果: ${validate}` });
+        this.$message({ type: 'info', message: `校验结果: ${validate}` });
         if (!validate) {
-            this.$mtd.message({ type: 'error', message: '表单项填写存在错误！请检查' });
+            this.$message({ type: 'error', message: '表单项填写存在错误！请检查' });
             // eslint-disable-next-line no-useless-return
             return;
         }

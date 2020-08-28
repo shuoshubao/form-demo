@@ -1,72 +1,69 @@
 <template>
-    <mtd-container class="container">
-        <mtd-aside width="200px" class="container-aside">
-            <mtd-menu v-model="activeName" @select="handleSelectMenu">
-                <mtd-menu-item v-for="(item, index) in menuData" :key="index" :name="item.value">
+    <el-container class="container">
+        <el-aside width="200px" class="container-aside">
+            <el-menu :default-active="activeName" @select="handleSelectMenu">
+                <el-menu-item v-for="(item, index) in menuData" :index="item.value">
                     {{ item.label }}
-                </mtd-menu-item>
-            </mtd-menu>
-        </mtd-aside>
-        <mtd-container>
-            <mtd-header class="container-header">
+                </el-menu-item>
+            </el-menu>
+        </el-aside>
+        <el-container>
+            <el-header class="container-header">
                 <span class="container-header-logo">
                     <img src="https://s0.meituan.net/bs/fe-web-meituan/fa5f0f0/img/logo.png" alt="" />
                 </span>
                 <span>form最佳实践</span>
-            </mtd-header>
-            <mtd-main class="container-main">
+            </el-header>
+            <el-main class="container-main">
                 <div class="container-view">
                     <router-view />
                 </div>
-            </mtd-main>
-        </mtd-container>
-    </mtd-container>
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import { find } from 'lodash';
-import { getValueInCollection } from '@datafe/tools';
 
-@Component
+@Component({})
 export default class App extends Vue {
-    activeName = '1';
+    activeName = 'form';
 
     menuData = [
         {
-            value: '1',
-            label: '基础表单',
-            name: 'form'
+            value: 'form',
+            label: '基础表单'
         },
         {
-            value: '2',
-            label: '表格+表单',
-            name: 'form-table'
+            value: 'form-table',
+            label: '表格+表单'
         },
         {
-            value: '3',
-            label: '多表单',
-            name: 'composite'
+            value: 'composite',
+            label: '多表单'
         },
         {
-            value: '4',
-            label: '念念碎',
-            name: 'readme'
+            value: 'readme',
+            label: '念念碎'
         }
     ];
 
     @Watch('$route', { deep: true, immediate: true })
     onRouteChange(to) {
         const { name } = to;
-        this.activeName = getValueInCollection(name, this.menuData, {
-            key: 'name',
-            valueKey: 'value'
-        });
+        if (!name) {
+            return;
+        }
+        this.activeName = name;
     }
 
-    handleSelectMenu(item) {
-        const itemMenu = find(this.menuData, { value: item.name });
-        this.$router.push({ name: itemMenu.name });
+    handleSelectMenu(key) {
+        if (key === this.activeName) {
+            return;
+        }
+        this.$router.push({ name: key });
     }
 }
 </script>

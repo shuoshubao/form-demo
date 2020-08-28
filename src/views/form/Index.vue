@@ -1,29 +1,33 @@
 <template>
     <div>
-        <mtd-form ref="form" :model="formModel" :rules="formRules">
-            <mtd-form-item label="姓名" prop="name">
-                <mtd-input v-model="formModel.name" />
-            </mtd-form-item>
-            <mtd-form-item label="年龄" prop="age">
-                <mtd-input v-model="formModel.age" :controls="false" />
-            </mtd-form-item>
-            <mtd-form-item label="职业" prop="job">
-                <dmc-select v-model="formModel.job" :data="jobEnum" size="" />
-            </mtd-form-item>
-            <mtd-form-item>
-                <mtd-button type="primary" @click="handleSubmit">提交</mtd-button>
-            </mtd-form-item>
-        </mtd-form>
+        <el-form ref="form" :model="formModel" :rules="formRules">
+            <el-form-item label="姓名" prop="name">
+                <el-input v-model="formModel.name" />
+            </el-form-item>
+            <el-form-item label="年龄" prop="age">
+                <el-input v-model="formModel.age" :controls="false" />
+            </el-form-item>
+            <el-form-item label="职业" prop="job">
+                <el-select v-model="formModel.job">
+                    <el-option v-for="(item, index) in jobEnum" :key="index" :value="item.value">
+                        {{ item.label }}
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="handleSubmit">提交</el-button>
+            </el-form-item>
+        </el-form>
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Ref } from 'vue-property-decorator';
-import { rules, pifyValidate } from '@datafe/tools';
+import { rules, pifyValidate } from '@nbfe/tools';
 
 const { required, selectRequired } = rules;
 
-@Component
+@Component({})
 export default class App extends Vue {
     @Ref('form') readonly form!: any;
 
@@ -57,7 +61,7 @@ export default class App extends Vue {
     // 提交
     async handleSubmit() {
         const validate = await this.handleValidate();
-        this.$mtd.message({ type: 'info', message: `校验结果: ${validate}` });
+        this.$message({ type: 'info', message: `校验结果: ${validate}` });
     }
 }
 </script>

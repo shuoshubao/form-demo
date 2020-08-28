@@ -1,4 +1,4 @@
-const EslintConfig = require('@datafe/config/eslint');
+const EslintConfig = require('@nbfe/config/eslint-vue');
 const PrettierConfig = require('./prettier.config');
 
 EslintConfig.parserOptions.tsconfigRootDir = __dirname;

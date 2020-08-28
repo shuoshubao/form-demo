@@ -1,14 +1,12 @@
 import Vue from 'vue';
-import MTD from '@ss/mtd-vue';
-import DMC from '@mt-material/datafe-dmc';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import VueRouter from 'vue-router';
-import '@ss/mtd-vue/lib/theme-chalk/index.css';
 import router from '@/router';
 
 import App from './App.vue';
 
-Vue.use(MTD);
-Vue.use(DMC);
+Vue.use(ElementUI);
 Vue.use(VueRouter);
 
 // 初始化 vue
