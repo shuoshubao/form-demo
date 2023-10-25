@@ -21,7 +21,7 @@
         "axios": "^0.18.0",
         "dayjs": "1.8.16",
         "element-ui": "^2.13.2",
-        "lodash": "4.17.15",
+        "lodash": "4.17.21",
         "vue": "2.6.10",
         "vue-property-decorator": "8.4.2",
         "vue-router": "^3.0.1",
